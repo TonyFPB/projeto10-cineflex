@@ -1,18 +1,12 @@
 import styled from "styled-components"
 
-export default function Session() {
+export default function Session({ date, weekday, showtimes }) {
+
     return (
         <SessionStyled>
-            <p>Segunda-feira - 24/08/2022</p>
+            <p>{weekday} - {date}</p>
             <div>
-                <Time>9:55</Time>
-                <Time>9:55</Time>
-                <Time>9:55</Time>
-                <Time>9:55</Time>
-                <Time>9:55</Time>
-                <Time>9:55</Time>
-                <Time>9:55</Time>
-                <Time>9:55</Time>
+                {showtimes.map((s) => <Time key={s.id}>{s.name}</Time>)}
             </div>
         </SessionStyled>
     )
@@ -27,8 +21,8 @@ const SessionStyled = styled.li`
     color: #293845;
     div{
         display: flex;
+        justify-content: flex-start;
         margin-top: 15px;
-        flex-wrap: wrap;
     }
 `
 

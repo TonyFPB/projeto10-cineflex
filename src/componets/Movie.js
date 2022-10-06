@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export default function Movie({ movie }) {
     console.log(movie)
     return (
-        <MovieStyled>
-            <img src={movie.posterURL} alt='poster filem' />
-        </MovieStyled>
+        <Link to={`sessoes/${movie.id}`}>
+            <MovieStyled>
+                <img src={movie.posterURL} alt='poster filem' />
+            </MovieStyled>
+        </Link>
     )
 }
 const MovieStyled = styled.li`

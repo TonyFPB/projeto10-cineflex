@@ -1,13 +1,15 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Session from "./ Session"
 
 export default function Showtimes() {
     const [movieSessions, setMovieSessios] = useState('ainda nao carregou')
-    const [movieDays,setMovieDays] = useState([])
+    const [movieDays, setMovieDays] = useState([])
+    const {idFilme} = useParams()
     useEffect(() => {
-        const URL = `https://mock-api.driven.com.br/api/v5/cineflex/movies/${1}/showtimes`
+        const URL = `https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`
 
         const promisse = axios.get(URL)
 
@@ -20,14 +22,19 @@ export default function Showtimes() {
 
         promisse.catch((err) => console.log(err))
     }, [])
-    if(movieSessions === 'ainda nao carregou'){
-        return(<p>{movieSessions}</p>)
-    }
+    
     return (
         <ShowtimesStyled>
             <div>Selecione o filme</div>
             <Sessions>
-                {movieDays.map((d) => <Session/>)}
+                {movieDays.map((d) =>
+                    <Session
+                        key={d.id}
+                        date={d.date}
+                        weekday={d.weekday}
+                        showtimes = {d.showtimes}
+                    />
+                )}
             </Sessions>
         </ShowtimesStyled>
     )
