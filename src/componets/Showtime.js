@@ -1,18 +1,24 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-export default function Session({ date, weekday, showtimes }) {
-
+export default function Showtime({ date, weekday, showtimes }) {
+    console.log(showtimes[0].id)
     return (
-        <SessionStyled>
+        <ShowtimeStyled>
             <p>{weekday} - {date}</p>
             <div>
-                {showtimes.map((s) => <Time key={s.id}>{s.name}</Time>)}
+                {showtimes.map((s) =>
+                    <Link key={s.id}>
+                        <Time>
+                            {s.name}
+                        </Time>
+                    </Link>)}
             </div>
-        </SessionStyled>
+        </ShowtimeStyled>
     )
 }
 
-const SessionStyled = styled.li`
+const ShowtimeStyled = styled.li`
     margin-bottom: 60px;
     display: flex;
     flex-direction: column;

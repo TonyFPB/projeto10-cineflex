@@ -2,12 +2,15 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import styled from "styled-components"
-import Session from "./ Session"
+import Showtime from "./Showtime"
+import FotterShowtimes from "./FotterShowtimes"
+
 
 export default function Showtimes() {
     const [movieSessions, setMovieSessios] = useState('ainda nao carregou')
     const [movieDays, setMovieDays] = useState([])
-    const {idFilme} = useParams()
+    const { idFilme } = useParams()
+
     useEffect(() => {
         const URL = `https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`
 
@@ -22,31 +25,33 @@ export default function Showtimes() {
 
         promisse.catch((err) => console.log(err))
     }, [])
-    
+
     return (
         <ShowtimesStyled>
-            <div>Selecione o filme</div>
+            <h1>Selecione o filme</h1>
             <Sessions>
                 {movieDays.map((d) =>
-                    <Session
+                    <Showtime
                         key={d.id}
                         date={d.date}
                         weekday={d.weekday}
-                        showtimes = {d.showtimes}
+                        showtimes={d.showtimes}
                     />
                 )}
             </Sessions>
+            <FotterShowtimes posterURL={movieSessions.posterURL} title={movieSessions.title} />
         </ShowtimesStyled>
     )
 }
 const ShowtimesStyled = styled.div`
     background-color: #E5E5E5;;
     margin-top: 67px;
+    margin-bottom: 122px;
     display:flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    div{
+    h1{
         height: 110px;
         display: flex;
         align-items: center;
