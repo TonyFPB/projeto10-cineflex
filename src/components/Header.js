@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 export default function Header(){
     const navigate = useNavigate()
     return (
-        <HeaderStyled onClick={()=>navigate('/')}>CINEFLEX</HeaderStyled>
+        <HeaderStyled ><p onClick={()=>navigate('/')}>CINEFLEX</p></HeaderStyled>
     )
 }
 
@@ -20,4 +20,7 @@ const HeaderStyled = styled.div`
     font-size: 34px;
     height: 67px;
     width: 100%;
+    p{
+        cursor: pointer;
+    }
 `
