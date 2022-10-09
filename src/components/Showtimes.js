@@ -7,7 +7,7 @@ import FotterShowtimes from "./FotterShowtimes"
 
 
 export default function Showtimes() {
-    const [movieSessions, setMovieSessios] = useState('ainda nao carregou')
+    const [movieSessions, setMovieSessios] = useState()
     const [movieDays, setMovieDays] = useState([])
     const { idFilme } = useParams()
 
@@ -17,15 +17,19 @@ export default function Showtimes() {
         const promisse = axios.get(URL)
 
         promisse.then((res) => {
-            console.log(res.data)
-            console.log(res.data.days)
             setMovieSessios(res.data)
             setMovieDays(res.data.days)
         })
 
-        promisse.catch((err) => console.log(err))
+        promisse.catch((err) => alert(err.response.data))
     }, [])
-
+    if(movieSessions === undefined){
+        return(
+            <ShowtimesStyled>
+                <h1>Carregando os melhores horarios...</h1>
+            </ShowtimesStyled>
+        )
+    }
     return (
         <ShowtimesStyled>
             <h1>Selecione o filme</h1>
@@ -39,7 +43,7 @@ export default function Showtimes() {
                     />
                 )}
             </Sessions>
-            <FotterShowtimes posterURL={movieSessions.posterURL} title={movieSessions.title} />
+            <FotterShowtimes posterURL={movieSessions.posterURL}>{movieSessions.title}</FotterShowtimes>
         </ShowtimesStyled>
     )
 }

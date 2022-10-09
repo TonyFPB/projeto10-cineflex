@@ -2,14 +2,13 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export default function Showtime({ date, weekday, showtimes }) {
-    console.log(showtimes[0].id)
     return (
         <ShowtimeStyled>
-            <p>{weekday} - {date}</p>
+            <p data-identifier="session-date">{weekday} - {date}</p>
             <div>
                 {showtimes.map((s) =>
-                    <Link key={s.id}>
-                        <Time>
+                    <Link to={`/sessao/${s.id}`} key={s.id}>
+                        <Time data-identifier="hour-minute-btn">
                             {s.name}
                         </Time>
                     </Link>)}

@@ -1,8 +1,9 @@
 import styled from "styled-components"
-
+import { useNavigate } from "react-router-dom"
 export default function Header(){
+    const navigate = useNavigate()
     return (
-        <HeaderStyled>CINEFLEX</HeaderStyled>
+        <HeaderStyled onClick={()=>navigate('/')}>CINEFLEX</HeaderStyled>
     )
 }
 

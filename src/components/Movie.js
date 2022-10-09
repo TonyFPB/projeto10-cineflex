@@ -2,10 +2,9 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export default function Movie({ movie }) {
-    console.log(movie)
     return (
         <Link to={`filme/${movie.id}`}>
-            <MovieStyled>
+            <MovieStyled data-identifier="movie-outdoor">
                 <img src={movie.posterURL} alt='poster filem' />
             </MovieStyled>
         </Link>

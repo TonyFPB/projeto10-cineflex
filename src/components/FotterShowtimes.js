@@ -1,11 +1,12 @@
 import styled from "styled-components"
 
-export default function FotterShowtimes({ posterURL, title }) {
+export default function FotterShowtimes({ posterURL,children }) {
 
     return (
         <FotterShowStyled>
-            <div><img src={posterURL} /></div>
-            <p>{title}</p>
+            <div data-identifier="movie-img-preview"><img src={posterURL} alt="Imagem do filme"/></div>
+            <p data-identifier="movie-and-session-infos-preview">{children}</p>
+            
         </FotterShowStyled>
     )
 }
